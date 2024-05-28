@@ -118,23 +118,6 @@ def unnormalize_image(tensor, std_dev, mean):
         result -= result.min()
     return result.transpose(0,1).transpose(1,2)
 
-def get_one_vec_sorted_layers(model, layer_names, size=None):
-    """
-    Converts a model, given as dictionary type, to a single vector
-    """
-    if size is None:
-        size = 0
-        for name in layer_names:
-            size += model[name].view(-1).shape[0]
-    sum_var = torch.FloatTensor(size).fill_(0)
-    size = 0
-    for name in layer_names:
-        layer_as_vector = model[name].view(-1)
-        layer_width = layer_as_vector.shape[0]
-        sum_var[size:size + layer_width] = layer_as_vector
-        size += layer_width
-    return sum_var
-
 def create_cluster_map_from_labels(expected_number_of_labels, clustering_labels):
     assert len(clustering_labels) == expected_number_of_labels
 
