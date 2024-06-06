@@ -224,12 +224,14 @@ def load_models(path):
                 print(f'Loading model {idx}')
                 model = torch.load(f'{path}/model_{idx}.pt')
                 stored_model.append(model)
+
+        if len(stored_model) == 1:
+            stored_model = stored_model[0]
+            
     else:
         print(f'No stored model found')
     
-    if len(stored_model) == 0:
-        stored_model = stored_model[0]
-        
+
     return stored_model
 
 def evaluate_model(model, test_data, poison_test_data, computation_device):
