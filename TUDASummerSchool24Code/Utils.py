@@ -206,7 +206,7 @@ def visualize_model_predictions(dataset_to_use, model_to_test, classes, std_dev,
 def save_models(path, list_model_to_save):
     if type(list_model_to_save) != list:
         list_model_to_save = [list_model_to_save]
-        
+
     if os.path.exists(path):
         print(f'folder "{path}" already used')
     else:
@@ -226,6 +226,9 @@ def load_models(path):
                 stored_model.append(model)
     else:
         print(f'No stored model found')
+    
+    if len(stored_model) == 0:
+        stored_model = stored_model[0]
         
     return stored_model
 
