@@ -204,6 +204,9 @@ def visualize_model_predictions(dataset_to_use, model_to_test, classes, std_dev,
     return 
 
 def save_models(path, list_model_to_save):
+    if type(list_model_to_save) != list:
+        list_model_to_save = [list_model_to_save]
+        
     if os.path.exists(path):
         print(f'folder "{path}" already used')
     else:
